@@ -15,7 +15,6 @@ public class SearchLocalRes {
     private int total;
     private int start;
     private int display;
-    private String category;
     private List<SearchLocalItem> items;
 
 
