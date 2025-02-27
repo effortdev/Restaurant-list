@@ -16,6 +16,8 @@ public class WishListServiceTest {
 
         var result = wishListService.search("갈비집");
 
+        System.out.println("test");
+
         System.out.println(result);
         Assertions.assertNotNull(result);
 
