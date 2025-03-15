@@ -27,7 +27,8 @@ public class WishListService {
         var searchLocalRes = naverClient.searchLocal(searchLocalReq);
 
         if(searchLocalRes.getTotal() > 0){
-            var localItem = searchLocalRes.getItems().stream().findFirst().get();
+            var localItem = searchLocalRes.getItems()
+                    .stream().findFirst().get(); //첫번째 항목 추출
 
             var imageQuery = localItem.getTitle().replaceAll("<[^>]*>", "");
             var searchImageReq = new SearchImageReq();
@@ -36,7 +37,7 @@ public class WishListService {
             // 이미지 검색
             var searchImageRes = naverClient.searchImage(searchImageReq);
 
-            if(searchLocalRes.getTotal() > 0){
+            if(searchImageRes.getTotal() > 0){
                 var imageItem = searchImageRes.getItems().stream().findFirst().get();
 
                 // 결과를 리턴
@@ -96,7 +97,8 @@ public class WishListService {
     }
 
     public List<WishListDto> findAll() {
-        return wishListRepository.findAll().stream().map(it -> entityToDto(it)).collect(Collectors.toList());
+        return wishListRepository.findAll().stream().
+                map(it -> entityToDto(it)).collect(Collectors.toList());
     }
 
     public void delete(int index) {

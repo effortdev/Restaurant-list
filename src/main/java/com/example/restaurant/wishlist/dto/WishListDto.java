@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 public class WishListDto {
+    // dto - 계층 간 데이터 전달하기 위한 객체 , 컨트롤러와 서비스 사이이용
     private Integer index;
     private String title;                   //음식명, 장소명
     private String category;                // 카테고리

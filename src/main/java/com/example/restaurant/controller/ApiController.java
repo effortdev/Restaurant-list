@@ -18,6 +18,7 @@ public class ApiController {
 
     @GetMapping("/search")
     public WishListDto search(@RequestParam String query){
+
         return wishListService.search(query);
     }
 

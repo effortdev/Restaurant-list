@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 public class NaverClient {
 
+    // @Value값 application.yaml 값 주입
     @Value("${naver.client.id}")
     private String naverClientId;
 
@@ -37,6 +38,7 @@ public class NaverClient {
                 .build()
                 .encode()
                 .toUri();
+        //uri결과 예시 : https://openapi.naver.com/v1/search/local.json?query=%EA%B0%95%EB%82%A8+%EB%A7%9B%EC%A7%91
 
         var headers = new HttpHeaders();
         headers.set("X-Naver-Client-Id", naverClientId);
