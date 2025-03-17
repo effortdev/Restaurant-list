@@ -97,6 +97,9 @@ public class WishListService {
     }
 
     public List<WishListDto> findAll() {
+        // findall() - 저장된 모든 데이터 반환
+        // stream() - 데이터 순차적으로 처리
+        // it 스트림에서 가져온 엔터티 객체
         return wishListRepository.findAll().stream().
                 map(it -> entityToDto(it)).collect(Collectors.toList());
     }
