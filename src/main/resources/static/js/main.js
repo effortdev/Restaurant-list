@@ -6,7 +6,7 @@
         data: {
             search_result : {}
         },
-        methods: {
+        method: {
             wishButton: function (event) {
                 console.log("add");
             }
@@ -46,12 +46,8 @@
     $("#searchButton").click(function () {
         const query = $("#searchBox").val();
         $.get(`/api/restaurant/search?query=${query}`, function (response) {
-            console.log("API 응답:", response); // 응답 확인
             search_result.search_result = response;
-            console.log("Vue 데이터:", search_result.search_result); // 데이터 확인
-            $('#search-result').attr('visibility','visible');
-        }).fail(function (jqXHR, textStatus) {
-            console.error("API 호출 실패:", textStatus); // 오류 확인
+            $('#search-result').attr('style','visible');
         });
     });
 
@@ -61,7 +57,7 @@
             const query = $("#searchBox").val();
             $.get(`/api/restaurant/search?query=${query}`, function (response) {
                 search_result.search_result = response;
-                $('#search-result').attr('visibility','visible');
+                $('#search-result').attr('style','visible');
             });
         }
     });
