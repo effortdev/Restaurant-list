@@ -6,3 +6,6 @@ naver:
   client:
     id: rbOcu3Ycb9k8JFpBFMCZ
     secret: wMwFgik8Fl
+
+server:
+  port: 9090
