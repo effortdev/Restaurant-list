@@ -1,0 +1,7 @@
+services:
+  naver-map-app:
+    build: .
+    container_name: map-service-container
+    ports:
+      - "8080:8080"
+    restart: always
