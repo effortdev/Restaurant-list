@@ -31,3 +31,30 @@ Runtime: eclipse-temurin:17-jdk-jammy (안정적인 Java 실행 환경)
 원인: WORKDIR /app 설정으로 인해 파일은 /app/app.jar에 복사되었으나, 실행 시 최상위 루트인 /app.jar를 호출하여 경로 불일치 발생.
 
 해결: ENTRYPOINT의 경로에서 /를 제거하거나 ./app.jar로 수정하여 현재 작업 디렉토리 내의 파일을 실행하도록 수정.
+
+-------------------------
+
+🚀 CI/CD Pipeline (GitHub Actions & Docker)
+본 프로젝트는 GitHub Actions와 Docker를 활용하여 빌드 및 이미지 빌드 자동화를 구축하였습니다.
+
+🛠 자동화 흐름 (Workflow)
+Trigger: main 브랜치에 코드가 push되면 GitHub Actions 워크플로우가 자동으로 실행됩니다.
+
+Environment: Ubuntu 가상 환경에서 Java 17(Temurin) 및 Gradle 환경을 세팅합니다.
+
+Build & Security:
+
+GitHub Repository Secrets에 저장된 네이버 API 키(NAVER_CLIENT_ID, NAVER_CLIENT_SECRET)를 환경 변수로 안전하게 주입합니다.
+
+소스 코드에 키를 노출하지 않고 Gradle 빌드를 수행하여 실행 가능한 .jar 파일을 생성합니다.
+
+Dockerizing:
+
+Docker Hub에 로그인한 후, Dockerfile을 기반으로 프로젝트를 컨테이너 이미지로 빌드합니다.
+
+Push: 빌드된 최신 이미지를 ktjone/restaurant-search:latest 태스크로 Docker Hub에 업로드합니다.
+
+🔐 보안 관리 (Security)
+Secret Masking: 네이버 API Client ID/Secret 및 Docker Hub 토큰과 같은 민감 정보는 GitHub Secrets를 통해 관리하여 외부 유출을 차단하였습니다.
+
+Environment Variables: application.yml에서 ${VARIABLE_NAME} 형식을 사용하여 환경에 따라 유연하게 설정값이 주입되도록 설계하였습니다.
